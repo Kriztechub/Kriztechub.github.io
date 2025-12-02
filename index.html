@@ -1,9 +1,829 @@
-<html>
-  <head>
-    <title>
-      Kriztech HUB
-    </title>
-    
-  </head>
-  Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrizTech Digital — Next Gen Solutions</title>
+    <meta name="description" content="Premium web & app development, creative AI tools and digital products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://kriztech.in/logoo.png" type="image/png">
+
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --primary: #3b82f6;
+            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --secondary-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+
+            /* Glass effect for light mode */
+            --glass: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+
+            /* Light theme background: Clean Tech/Circuit Abstract */
+            /* Overlay opacity: 0.50/0.65 (More transparent) */
+            --bg-image: linear-gradient(to bottom, rgba(248, 250, 252, 0.50), rgba(248, 250, 252, 0.65)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=60&w=1600&auto=format&fit=crop');
+
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 20px 40px -10px rgba(59, 130, 246, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #050505;
+            --bg-card: #0f0f0f;
+
+            /* Glass effect for dark mode */
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(5, 5, 5, 0.8);
+
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+
+            /* Dark theme background: Circuit Board/High-Tech */
+            /* Overlay opacity: 0.60/0.75 */
+            --bg-image: linear-gradient(to bottom, rgba(5, 5, 5, 0.60), rgba(5, 5, 5, 0.75)),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=60&w=1600&auto=format&fit=crop');
+
+            --shadow-card: none;
+            --shadow-hover: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: color 0.3s, background-image 0.3s;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            line-height: 1.1;
+            color: var(--text-main);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 0;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+        }
+
+        header.scrolled {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .theme-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cta-btn {
+            background: var(--primary-gradient);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 2.5rem;
+            font-family: var(--font-heading);
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-item span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Bento Grid Services */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .bento-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .bento-card i {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bento-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .bento-large {
+            grid-column: span 2;
+        }
+
+        /* Tools Showcase */
+        .tools-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-card);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tool-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .tool-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-card), transparent);
+        }
+
+        .tool-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .tool-link {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Utility Tools Tabs */
+        .utility-section {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-card);
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .tab-content.active {
+            display: grid;
+        }
+
+        .mini-tool {
+            background: var(--glass);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .mini-tool:hover {
+            background: rgba(125, 125, 125, 0.1);
+            border-color: var(--glass-border);
+        }
+
+        .mini-tool i {
+            color: var(--text-muted);
+        }
+
+        .mini-tool span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Contact & Footer */
+        .contact-area {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-large {
+                grid-column: span 1;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <img src="https://kriztech.in/logoo.png" alt="KrizTech">
+                KrizTech
+            </a>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <nav class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#tools">Products</a>
+                    <a href="#utilities">Utilities</a>
+                </nav>
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="mailto:admin@kriztech.in" class="cta-btn">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <h1>Digital Excellence <br> Redefined.</h1>
+            <p>We build high-performance web apps, AI tools, and digital experiences that scale with your vision.</p>
+
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#tools" class="cta-btn">Explore Tools</a>
+                <a href="mailto:admin@kriztech.in" class="cta-btn"
+                    style="background: transparent; border: 1px solid var(--glass-border); color: var(--text-main);">Contact
+                    Us</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong data-target="120">0</strong>
+                    <span>Projects Shipped</span>
+                </div>
+                <div class="stat-item">
+                    <strong data-target="99">0</strong>
+                    <span>Client Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <strong>24/7</strong>
+                    <span>Active Support</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Our Expertise</h2>
+            <div class="bento-grid">
+                <div class="bento-card bento-large">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>Custom Web Architecture</h3>
+                    <p>Scalable, SEO-optimized, and high-performance web applications built with modern frameworks. We
+                        focus on speed, accessibility, and robust backend integration.</p>
+                </div>
+                <div class="bento-card">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform solutions that deliver seamless user experiences on iOS and Android.
+                    </p>
+                </div>
+                <div class="bento-card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3>AI Integration</h3>
+                    <p>Leveraging LLMs, text-to-speech, and computer vision to build smart, automated tools for your
+                        business.</p>
+                </div>
+                <div class="bento-card bento-large">
+                    <i class="fa-solid fa-rocket-launch"></i>
+                    <h3>Growth & Strategy</h3>
+                    <p>Data-driven marketing, A/B testing, and product roadmapping to ensure your digital product
+                        reaches its full potential.</p>
+                </div>
+                <div class="bento-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Security</h3>
+                    <p>Enterprise-grade security audits, regular patching, and performance monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="tools-showcase">
+                <div class="tool-card">
+                    <div class="tool-img" style="background-image: url('https://kriztech.in/clip/icon.jpg');"></div>
+                    <div class="tool-content">
+                        <h4>KrizClip AI</h4>
+                        <p>Generate engaging videos from text prompts instantly. Perfect for content creators.</p>
+                        <a href="https://kriztech.in/clip" target="_blank" class="tool-link">Try KrizClip <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img" style="background-image: url('https://kriztech.in/voicecraft/logo.jpg');">
+                    </div>
+                    <div class="tool-content">
+                        <h4>VoiceCraft</h4>
+                        <p>Natural sounding text-to-speech engine with multiple voices and languages.</p>
+                        <a href="https://kriztech.in/voicecraft" target="_blank" class="tool-link">Try VoiceCraft <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img" style="background-image: url('https://kriztech.in/imagen/logo.jpg');"></div>
+                    <div class="tool-content">
+                        <h4>ImageX</h4>
+                        <p>Free AI image generator. Create stunning visuals for your projects in seconds.</p>
+                        <a href="https://kriztech.in/imagen" target="_blank" class="tool-link">Try ImageX <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');">
+                    </div>
+                    <div class="tool-content">
+                        <h4>KrizBio</h4>
+                        <p>The ultimate link-in-bio solution and URL shortener for social media.</p>
+                        <a href="https://bio.kriztech.in" target="_blank" class="tool-link">Create Bio <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="utilities" class="utility-section">
+            <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: left;">Developer Utilities</h2>
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'network')">Network</button>
+                <button class="tab-btn" onclick="openTab(event, 'text')">Text</button>
+                <button class="tab-btn" onclick="openTab(event, 'converters')">Converters</button>
+                <button class="tab-btn" onclick="openTab(event, 'generators')">Generators</button>
+                <button class="tab-btn" onclick="openTab(event, 'dev')">Developer</button>
+                <button class="tab-btn" onclick="openTab(event, 'image')">Image</button>
+            </div>
+
+            <div id="network" class="tab-content active">
+                <a href="https://bio.kriztech.in/tools/dns-lookup" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-network-wired"></i> <span>DNS Lookup</span></a>
+                <a href="https://bio.kriztech.in/tools/ip-lookup" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-location-dot"></i> <span>IP Lookup</span></a>
+                <a href="https://bio.kriztech.in/tools/ssl-lookup" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-lock"></i> <span>SSL Check</span></a>
+                <a href="https://bio.kriztech.in/tools/whois-lookup" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-id-card"></i> <span>Whois</span></a>
+                <a href="https://bio.kriztech.in/tools/ping" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-right-left"></i> <span>Ping</span></a>
+                <a href="https://bio.kriztech.in/tools/http-headers-lookup" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-file-code"></i> <span>HTTP Headers</span></a>
+            </div>
+
+            <div id="text" class="tab-content">
+                <a href="https://bio.kriztech.in/tools/text-separator" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-arrows-left-right-to-line"></i> <span>Text Separator</span></a>
+                <a href="https://bio.kriztech.in/tools/email-extractor" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-at"></i> <span>Email Extractor</span></a>
+                <a href="https://bio.kriztech.in/tools/text-to-speech" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-volume-high"></i> <span>Text to Speech</span></a>
+                <a href="https://bio.kriztech.in/tools/case-converter" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-font"></i> <span>Case Converter</span></a>
+                <a href="https://bio.kriztech.in/tools/character-counter" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-calculator"></i> <span>Char Counter</span></a>
+                <a href="https://bio.kriztech.in/tools/lorem-ipsum-generator" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-paragraph"></i> <span>Lorem Ipsum</span></a>
+            </div>
+
+            <div id="converters" class="tab-content">
+                <a href="https://bio.kriztech.in/tools/base64-encoder" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-code"></i> <span>Base64 Encode</span></a>
+                <a href="https://bio.kriztech.in/tools/base64-decoder" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-code"></i> <span>Base64 Decode</span></a>
+                <a href="https://bio.kriztech.in/tools/url-encoder" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-link"></i> <span>URL Encode</span></a>
+                <a href="https://bio.kriztech.in/tools/color-converter" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-palette"></i> <span>Color Convert</span></a>
+                <a href="https://bio.kriztech.in/tools/binary-converter" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-binary"></i> <span>Binary Convert</span></a>
+            </div>
+
+            <div id="generators" class="tab-content">
+                <a href="https://bio.kriztech.in/tools/password-generator" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-key"></i> <span>Password Gen</span></a>
+                <a href="https://bio.kriztech.in/tools/uuid-v4-generator" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-fingerprint"></i> <span>UUID Gen</span></a>
+                <a href="https://bio.kriztech.in/tools/qr-code-reader" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-qrcode"></i> <span>QR Reader</span></a>
+                <a href="https://bio.kriztech.in/tools/whatsapp-link-generator" target="_blank" class="mini-tool"><i
+                        class="fa-brands fa-whatsapp"></i> <span>WhatsApp Link</span></a>
+            </div>
+
+            <div id="dev" class="tab-content">
+                <a href="https://bio.kriztech.in/tools/html-minifier" target="_blank" class="mini-tool"><i
+                        class="fa-brands fa-html5"></i> <span>HTML Minify</span></a>
+                <a href="https://bio.kriztech.in/tools/css-minifier" target="_blank" class="mini-tool"><i
+                        class="fa-brands fa-css3-alt"></i> <span>CSS Minify</span></a>
+                <a href="https://bio.kriztech.in/tools/js-minifier" target="_blank" class="mini-tool"><i
+                        class="fa-brands fa-js"></i> <span>JS Minify</span></a>
+                <a href="https://bio.kriztech.in/tools/json-validator-beautifier" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-code"></i> <span>JSON Format</span></a>
+                <a href="https://bio.kriztech.in/tools/sql-beautifier" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-database"></i> <span>SQL Format</span></a>
+            </div>
+
+            <div id="image" class="tab-content">
+                <a href="https://bio.kriztech.in/tools/image-optimizer" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-file-image"></i> <span>Compress Img</span></a>
+                <a href="https://bio.kriztech.in/tools/png-to-jpg" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-image"></i> <span>PNG to JPG</span></a>
+                <a href="https://bio.kriztech.in/tools/jpg-to-webp" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-image"></i> <span>JPG to WEBP</span></a>
+                <a href="https://bio.kriztech.in/tools/color-picker" target="_blank" class="mini-tool"><i
+                        class="fa-solid fa-eye-dropper"></i> <span>Color Picker</span></a>
+            </div>
+        </section>
+
+        <section class="contact-area">
+            <h2 class="section-title">Let's Build Something Amazing</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
+                Ready to transform your ideas into reality? Reach out to us for a consultation or just to say hi.
+            </p>
+            <a href="mailto:admin@kriztech.in" class="cta-btn" style="font-size: 1.2rem; padding: 1rem 2.5rem;">
+                <i class="fa-solid fa-envelope"></i> admin@kriztech.in
+            </a>
+
+            <div class="social-links">
+                <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>KrizTech Digital Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Tab switching
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Stats counter
+        const stats = document.querySelectorAll('.stat-item strong');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    if (target) {
+                        let count = 0;
+                        const updateCount = () => {
+                            const increment = target / 50;
+                            if (count < target) {
+                                count += increment;
+                                entry.target.innerText = Math.ceil(count) + (entry.target.nextElementSibling.innerText.includes('Satisfaction') ? '%' : '+');
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                entry.target.innerText = target + (entry.target.nextElementSibling.innerText.includes('Satisfaction') ? '%' : '+');
+                            }
+                        };
+                        updateCount();
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        stats.forEach(stat => observer.observe(stat));
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const icon = themeBtn.querySelector('i');
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+                icon.className = 'fa-solid fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check saved preference or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+    </script>
+</body>
+
 </html>
