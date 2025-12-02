@@ -6,12 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KrizTech Digital — Next Gen Solutions</title>
     <meta name="description" content="Premium web & app development, creative AI tools and digital products.">
+
+    <!-- Preconnect to Font Origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload Critical Image (Default Light Theme Background) -->
+    <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1518770660439-4636190af475?q=60&w=1600&auto=format&fit=crop">
+
+    <!-- Google Fonts with Display Swap -->
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Optimized Font Awesome Loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
     <link rel="icon" href="https://kriztech.in/logoo.png" type="image/png">
 
     <style>
@@ -29,7 +44,8 @@
             --nav-bg: rgba(255, 255, 255, 0.8);
 
             --text-main: #0f172a;
-            --text-muted: #64748b;
+            /* Darkened for better contrast ratio (4.5:1+) */
+            --text-muted: #475569;
 
             /* Light theme background: Clean Tech/Circuit Abstract */
             /* Overlay opacity: 0.50/0.65 (More transparent) */
@@ -53,7 +69,8 @@
             --nav-bg: rgba(5, 5, 5, 0.8);
 
             --text-main: #ffffff;
-            --text-muted: #9ca3af;
+            /* Lightened for better contrast on dark bg */
+            --text-muted: #cbd5e1;
 
             /* Dark theme background: Circuit Board/High-Tech */
             /* Overlay opacity: 0.60/0.75 */
@@ -346,9 +363,11 @@
             flex-direction: column;
         }
 
-        .tool-content h4 {
+        .tool-content h3 {
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
         }
 
         .tool-content p {
@@ -504,8 +523,8 @@
     <header id="navbar">
         <div class="container nav-inner">
             <a href="#" class="logo">
-                <img src="https://kriztech.in/logoo.png" alt="KrizTech">
-                KrizTech
+                <img src="https://kriztech.in/logoo.png" alt="KrizTech" width="40" height="40">
+                KrizTech Digital Solutions
             </a>
             <div style="display: flex; align-items: center; gap: 2rem;">
                 <nav class="nav-links">
@@ -591,7 +610,7 @@
                 <div class="tool-card">
                     <div class="tool-img" style="background-image: url('https://kriztech.in/clip/icon.jpg');"></div>
                     <div class="tool-content">
-                        <h4>KrizClip AI</h4>
+                        <h3>KrizClip AI</h3>
                         <p>Generate engaging videos from text prompts instantly. Perfect for content creators.</p>
                         <a href="https://kriztech.in/clip" target="_blank" class="tool-link">Try KrizClip <i
                                 class="fa-solid fa-arrow-right"></i></a>
@@ -601,7 +620,7 @@
                     <div class="tool-img" style="background-image: url('https://kriztech.in/voicecraft/logo.jpg');">
                     </div>
                     <div class="tool-content">
-                        <h4>VoiceCraft</h4>
+                        <h3>VoiceCraft</h3>
                         <p>Natural sounding text-to-speech engine with multiple voices and languages.</p>
                         <a href="https://kriztech.in/voicecraft" target="_blank" class="tool-link">Try VoiceCraft <i
                                 class="fa-solid fa-arrow-right"></i></a>
@@ -610,7 +629,7 @@
                 <div class="tool-card">
                     <div class="tool-img" style="background-image: url('https://kriztech.in/imagen/logo.jpg');"></div>
                     <div class="tool-content">
-                        <h4>ImageX</h4>
+                        <h3>ImageX</h3>
                         <p>Free AI image generator. Create stunning visuals for your projects in seconds.</p>
                         <a href="https://kriztech.in/imagen" target="_blank" class="tool-link">Try ImageX <i
                                 class="fa-solid fa-arrow-right"></i></a>
@@ -621,7 +640,7 @@
                         style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');">
                     </div>
                     <div class="tool-content">
-                        <h4>KrizBio</h4>
+                        <h3>KrizBio</h3>
                         <p>The ultimate link-in-bio solution and URL shortener for social media.</p>
                         <a href="https://bio.kriztech.in" target="_blank" class="tool-link">Create Bio <i
                                 class="fa-solid fa-arrow-right"></i></a>
@@ -730,10 +749,10 @@
             </a>
 
             <div class="social-links">
-                <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </section>
 
