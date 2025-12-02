@@ -514,6 +514,31 @@
             .nav-links {
                 display: none;
             }
+
+            /* Mobile Header Optimizations */
+            .logo {
+                font-size: 1.1rem;
+                /* Smaller font to fit full name */
+                gap: 0.5rem;
+                max-width: 65%;
+                /* Prevent it from taking full width */
+                line-height: 1.2;
+            }
+
+            .logo img {
+                width: 32px;
+                height: 32px;
+            }
+
+            /* Hide header CTA on mobile to make room for the long name */
+            header .cta-btn {
+                display: none;
+            }
+
+            /* Adjust spacing for the right-side controls */
+            header .nav-inner>div {
+                gap: 0.5rem !important;
+            }
         }
     </style>
 </head>
@@ -523,7 +548,8 @@
     <header id="navbar">
         <div class="container nav-inner">
             <a href="#" class="logo">
-                <img src="https://kriztech.in/logoo.png" alt="KrizTech" width="40" height="40">
+                <img src="https://kriztech.in/clip/icon.jpg" alt="KrizTech Digital Solutions" width="40" height="40"
+                    style="border-radius: 8px;">
                 KrizTech Digital Solutions
             </a>
             <div style="display: flex; align-items: center; gap: 2rem;">
